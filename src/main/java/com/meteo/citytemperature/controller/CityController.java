@@ -3,6 +3,8 @@ package com.meteo.citytemperature.controller;
 import com.meteo.citytemperature.model.City;
 import com.meteo.citytemperature.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +16,8 @@ public class CityController {
     private CityService cityService;
 
     @GetMapping
-    public List<City> getAllCities() {
-        return cityService.getAllCities();
+    public Page<City> getAllCities(Pageable pageable) {
+        return cityService.getAllCities(pageable);
     }
 
     @DeleteMapping

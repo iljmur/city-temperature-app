@@ -3,6 +3,8 @@ package com.meteo.citytemperature.service;
 import com.meteo.citytemperature.model.City;
 import com.meteo.citytemperature.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.json.JSONArray;
@@ -76,8 +78,8 @@ public class CityService {
         return response.getMain().getTemp();
     }
 
-    public List<City> getAllCities() {
-        return cityRepository.findAll();
+    public Page<City> getAllCities(Pageable pageable) {
+        return cityRepository.findAll(pageable);
     }
 
     public void deleteAllCities() {
