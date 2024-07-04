@@ -26,7 +26,7 @@ This is a Spring Boot application for querying and managing the temperatures of 
 
 4. **Run as standalone application:**
 	```bash
-	java -jar target/citytemperature-0.0.1-SNAPSHOT.jar
+	java -jar target/citytemperature-1.0.0.jar
 	```
    
    **Or run as docker container:**
@@ -101,7 +101,12 @@ This is a Spring Boot application for querying and managing the temperatures of 
 
 **Method:** `DELETE`
 
-**Response:** `204 No Content`
+**Response:** `200 OK`
+```json
+{
+	"message": "All cities have been successfully deleted."
+}
+```
 
 ### Reload Cities
 
@@ -110,6 +115,11 @@ This is a Spring Boot application for querying and managing the temperatures of 
 **Method:** `POST`
 
 **Response:** `200 OK`
+```json
+{
+	"message": "Cities have been successfully reloaded and temperatures updated."
+}
+```
 
 
 ## Example Usage
