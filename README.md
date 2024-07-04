@@ -17,7 +17,7 @@ This is a Spring Boot application for querying and managing the temperatures of 
 	```
 
 2. **Configure the API Key:**
-   Replace the `API_KEY` in `CityService` with your OpenWeatherMap API key.
+   Replace the `API_KEY` in `application.properties` with your OpenWeatherMap API key.
 
 3. **Build the project:**
 	```bash

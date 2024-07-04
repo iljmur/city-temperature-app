@@ -3,6 +3,7 @@ package com.meteo.citytemperature.service;
 import com.meteo.citytemperature.model.City;
 import com.meteo.citytemperature.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,11 @@ import java.util.List;
 @Service
 public class CityService {
     private static final Logger logger = LoggerFactory.getLogger(CityService.class);
-    private static final String API_KEY = "9c4f1e01c060df147afcdeda9364b627";
-    private static final String API_URL = "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=" + API_KEY + "&units=metric";
-    private static final String API_CITIES_URL = "https://restcountries.com/v3.1/all?fields=capital,unMember";
+    @Value("${weather.api.url}")
+    private String weatherApiUrl;
+
+    @Value("${countries.api.url}")
+    private String countriesApiUrl;
 
     @Autowired
     private CityRepository cityRepository;
@@ -56,7 +59,7 @@ public class CityService {
 
     private List<String> getCapitalNames() {
         RestTemplate restTemplate = new RestTemplate();
-        String response = restTemplate.getForObject(API_CITIES_URL, String.class);
+        String response = restTemplate.getForObject(countriesApiUrl, String.class);
 
         List<String> capitals = new ArrayList<>();
         if (response != null) {
@@ -78,7 +81,7 @@ public class CityService {
 
     private double getTemperatureForCity(String cityName) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = String.format(API_URL, cityName);
+        String url = String.format(weatherApiUrl, cityName);
         CityWeatherResponse response = restTemplate.getForObject(url, CityWeatherResponse.class);
         return response.getMain().getTemp();
     }
