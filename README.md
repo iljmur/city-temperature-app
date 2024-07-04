@@ -34,7 +34,11 @@ This is a Spring Boot application for querying and managing the temperatures of 
 	docker build -t city-temperature .
 	docker run -p 8080:8080 city-temperature
 	```
-
+	
+5. **Application is running at localhost:8080**
+	- access with any rest client at your convenience
+	- alternatively endpoints can be tested with swagger interactive documentation at http://localhost:8080/swagger-ui.html
+	
 ## API Documentation
 
 ### Get All Cities
