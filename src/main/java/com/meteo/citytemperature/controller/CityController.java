@@ -26,5 +26,6 @@ public class CityController {
     @PostMapping("/reload")
     public void reloadCities() {
         cityService.reloadCities();
+        cityService.updateCityTemperatures();
     }
 }

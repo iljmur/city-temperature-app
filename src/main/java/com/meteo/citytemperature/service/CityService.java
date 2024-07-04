@@ -38,7 +38,7 @@ public class CityService {
         }
     }
 
-    private void updateCityTemperatures() {
+    public void updateCityTemperatures() {
         List<City> allCities = cityRepository.findAll();
         for (City city : allCities) {
             double temperature = getTemperatureForCity(city.getName());
