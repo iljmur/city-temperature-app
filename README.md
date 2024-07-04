@@ -11,23 +11,29 @@ This is a Spring Boot application for querying and managing the temperatures of 
 ## Getting Started
 
 1. **Clone the repository:**
-   ```bash
-   git clone git@github.com:iljmur/city-temperature-app.git
-   cd city-temperature-app
-   ```
+	```bash
+	git clone git@github.com:iljmur/city-temperature-app.git
+	cd city-temperature-app
+	```
 
 2. **Configure the API Key:**
    Replace the `API_KEY` in `CityService` with your OpenWeatherMap API key.
 
 3. **Build the project:**
-   ```bash
-   mvn clean install
-   ```
+	```bash
+	mvn clean install
+	```
 
-4. **Run the application:**
-   ```bash
-   java -jar target/citytemperature-0.0.1-SNAPSHOT.jar
-   ```
+4. **Run as standalone application:**
+	```bash
+	java -jar target/citytemperature-0.0.1-SNAPSHOT.jar
+	```
+   
+   **Or run as docker container:**
+	```bash
+	docker build -t city-temperature .
+	docker run -p 8080:8080 city-temperature
+	```
 
 ## API Documentation
 
