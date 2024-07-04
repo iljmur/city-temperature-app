@@ -5,6 +5,7 @@ import com.meteo.citytemperature.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +22,15 @@ public class CityController {
     }
 
     @DeleteMapping
-    public void deleteAllCities() {
+    public ResponseEntity<ApiResponse> deleteAllCities() {
         cityService.deleteAllCities();
+        return ResponseEntity.ok(new ApiResponse("All cities have been successfully deleted."));
     }
 
     @PostMapping("/reload")
-    public void reloadCities() {
+    public ResponseEntity<ApiResponse> reloadCities() {
         cityService.reloadCities();
         cityService.updateCityTemperatures();
+        return ResponseEntity.ok(new ApiResponse("Cities have been successfully reloaded and temperatures updated."));
     }
 }
