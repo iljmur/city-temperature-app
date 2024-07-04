@@ -22,16 +22,26 @@ public class CityService {
 
     @PostConstruct
     public void init() {
-        loadCities();
+        if (cityRepository.count() < 100) {
+            reloadCities();
+        }
+        updateCityTemperatures();
     }
 
     public void loadCities() {
         List<String> cities = getCapitalNames();
 
         for (String cityName : cities) {
-            double temperature = getTemperatureForCity(cityName);
             City city = new City();
             city.setName(cityName);
+            cityRepository.save(city);
+        }
+    }
+
+    private void updateCityTemperatures() {
+        List<City> allCities = cityRepository.findAll();
+        for (City city : allCities) {
+            double temperature = getTemperatureForCity(city.getName());
             city.setTemperature(temperature);
             cityRepository.save(city);
         }
