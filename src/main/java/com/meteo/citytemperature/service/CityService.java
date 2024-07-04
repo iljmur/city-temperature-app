@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import jakarta.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CityService {
+    private static final Logger logger = LoggerFactory.getLogger(CityService.class);
     private static final String API_KEY = "9c4f1e01c060df147afcdeda9364b627";
     private static final String API_URL = "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=" + API_KEY + "&units=metric";
     private static final String API_CITIES_URL = "https://restcountries.com/v3.1/all?fields=capital,unMember";
@@ -37,6 +40,7 @@ public class CityService {
             City city = new City();
             city.setName(cityName);
             cityRepository.save(city);
+            logger.info("Loaded city: {}", cityName);
         }
     }
 
@@ -46,6 +50,7 @@ public class CityService {
             double temperature = getTemperatureForCity(city.getName());
             city.setTemperature(temperature);
             cityRepository.save(city);
+            logger.info("Updated temperature for city: {} to {}", city.getName(), temperature);
         }
     }
 
@@ -84,10 +89,12 @@ public class CityService {
 
     public void deleteAllCities() {
         cityRepository.deleteAll();
+        logger.info("All cities have been deleted from the database.");
     }
 
     public void reloadCities() {
         deleteAllCities();
         loadCities();
+        logger.info("Cities have been reloaded.");
     }
 }
