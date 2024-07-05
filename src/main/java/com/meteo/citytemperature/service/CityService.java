@@ -68,7 +68,7 @@ public class CityService {
                 JSONObject country = countries.getJSONObject(i);
                 JSONArray capitalArray = country.optJSONArray("capital");
                 Boolean isUnMember = (Boolean) country.get("unMember");
-                if (isUnMember && capitalArray != null && capitalArray.length() > 0) {
+                if (isUnMember && capitalArray != null && !capitalArray.isEmpty()) {
                     capitals.add(capitalArray.getString(0));
                 }
                 if (capitals.size() >= 100) {
