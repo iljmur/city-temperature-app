@@ -19,12 +19,17 @@ This is a Spring Boot application for querying and managing the temperatures of 
 2. **Configure the API Key:**
    Replace the `API_KEY` in `application.properties` with your OpenWeatherMap API key.
 
-3. **Build the project:**
+3. **Run tests:**
+	```bash
+	mvn test
+	```
+	
+4. **Build the project:**
 	```bash
 	mvn clean install
 	```
 
-4. **Run as standalone application:**
+5. **Run as standalone application:**
 	```bash
 	java -jar target/citytemperature-1.0.0.jar
 	```
@@ -35,7 +40,7 @@ This is a Spring Boot application for querying and managing the temperatures of 
 	docker run -p 8080:8080 city-temperature
 	```
 	
-5. **Application is running at localhost:8080**
+6. **Application is running at localhost:8080**
 	- access with any rest client at your convenience
 	- alternatively endpoints can be tested with swagger interactive documentation at http://localhost:8080/swagger-ui.html
 	

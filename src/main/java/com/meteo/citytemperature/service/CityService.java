@@ -57,7 +57,7 @@ public class CityService {
         }
     }
 
-    private List<String> getCapitalNames() {
+    List<String> getCapitalNames() {
         RestTemplate restTemplate = new RestTemplate();
         String response = restTemplate.getForObject(countriesApiUrl, String.class);
 
@@ -79,7 +79,7 @@ public class CityService {
         return capitals;
     }
 
-    private double getTemperatureForCity(String cityName) {
+     double getTemperatureForCity(String cityName) {
         RestTemplate restTemplate = new RestTemplate();
         String url = String.format(weatherApiUrl, cityName);
         CityWeatherResponse response = restTemplate.getForObject(url, CityWeatherResponse.class);
